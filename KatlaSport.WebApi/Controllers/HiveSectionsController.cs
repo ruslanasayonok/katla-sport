@@ -71,14 +71,14 @@ namespace KatlaSport.WebApi.Controllers
         [SwaggerResponse(HttpStatusCode.Conflict)]
         [SwaggerResponse(HttpStatusCode.NotFound)]
         [SwaggerResponse(HttpStatusCode.InternalServerError)]
-        public async Task<IHttpActionResult> UpdateHiveSection([FromUri] int id, [FromBody] UpdateHiveSectionRequest updateRequest)
+        public async Task<IHttpActionResult> UpdateHiveSectionAsync([FromUri] int id, [FromBody] UpdateHiveSectionRequest updateHiveSection)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            await _hiveSectionService.UpdateHiveSectionAsync(id, updateRequest);
+            await _hiveSectionService.UpdateHiveSectionAsync(id, updateHiveSection);
             return ResponseMessage(Request.CreateResponse(HttpStatusCode.NoContent));
         }
 

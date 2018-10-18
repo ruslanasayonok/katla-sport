@@ -28,15 +28,14 @@ export class HiveSectionListComponent implements OnInit {
     })
   }
 
-  onDelete(hiveId : number)
-  {
-    var hive = this.hiveSections.find(h => h.id == hiveId);
-    this.hiveSectionService.setHiveSectionStatus(hiveId, true).subscribe(c => hive.isDeleted = true);
+  onUndelete(id: number){
+    var hiveSection = this.hiveSections.find(h => h.id == id);
+    this.hiveSectionService.setHiveSectionStatus(id, false).subscribe(s => hiveSection.isDeleted = false);
+    
   }
 
-  onUndelete(hiveId : number)
-  {
-    var hive = this.hiveSections.find(h => h.id == hiveId);
-    this.hiveSectionService.setHiveSectionStatus(hiveId, false).subscribe(c => hive.isDeleted = false);
+  onDelete(id: number){
+    var hiveSection = this.hiveSections.find(h => h.id == id);
+    this.hiveSectionService.setHiveSectionStatus(id, true).subscribe(s => hiveSection.isDeleted = true);
   }
 }
